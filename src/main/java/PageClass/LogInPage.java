@@ -23,17 +23,17 @@ public class LogInPage {
     final By ContinueButton = By.xpath("//button[contains(@type,'submit')]");
 
     @Step("Entering UserName")
-    public  void EnterUserName() {
+    public  void EnterUserName(String UserName) {
         wait.until(ExpectedConditions.presenceOfElementLocated(UserNameField));
         driver.findElement(UserNameField).click();
-        driver.switchTo().activeElement().sendKeys("snackcoder@gmail.com");
+        driver.switchTo().activeElement().sendKeys(UserName);
     }
 
     @Step("Entering Password")
-    public void EnterPassword() {
+    public void EnterPassword(String Password) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(PasswordField));
         driver.findElement(PasswordField).click();
-        driver.switchTo().activeElement().sendKeys("SuperAdmin");
+        driver.switchTo().activeElement().sendKeys(Password);
     }
 
     @Step("Clicking Continue Button")

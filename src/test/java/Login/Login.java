@@ -24,8 +24,8 @@ public class Login extends BaseClass {
 
     @Test
     public void LogIn() {
-        logInPage.EnterUserName();
-        logInPage.EnterPassword();
+        logInPage.EnterUserName("snackcoder@gmail.com");
+        logInPage.EnterPassword("SuperAdmin");
         logInPage.ClickContinueButton();
 
 
