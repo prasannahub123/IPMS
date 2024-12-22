@@ -23,12 +23,10 @@ public class Login extends BaseClass {
     }
 
     @Test
-    public void LogIn() {
+    public  void LogIn() {
         logInPage.EnterUserName("snackcoder@gmail.com");
         logInPage.EnterPassword("SuperAdmin");
         logInPage.ClickContinueButton();
-
-
     }
 
 
