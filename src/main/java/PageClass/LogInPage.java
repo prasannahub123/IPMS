@@ -1,5 +1,6 @@
 package PageClass;
 
+import dev.failsafe.internal.util.Durations;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+
 public class LogInPage {
 
     WebDriver driver;
@@ -15,7 +17,7 @@ public class LogInPage {
 
     public LogInPage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30) );
     }
 
     final By UserNameField = By.xpath("(//div[contains(@class,'space-y')])[1]");
