@@ -3,6 +3,7 @@ package PageClass;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,6 +25,8 @@ public class LeadPage {
     final By LeadSizeDropDownButton = By.xpath("//div[@class=' css-13cymwt-control'][1]");
     final By LeadTypeDropDownButton = By.xpath("//select[@class=' py-2 px-1 rounded-md border-2'][1]");
     final By FlagDropDownButton = By.xpath("//select[@name='flag']");
+    final String LeadSizeOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
+    final By LeadDescriptionField = By.xpath("//div[contains(@class,'relative')]/textarea");
 
 
     @Step("Clicking on the Lead menu")
@@ -45,28 +48,39 @@ public class LeadPage {
     }
 
     @Step("Enter lead Name")
-    public void EnterLeadName(String leadname) {
+    public void EnterLeadName(String LeadName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LeadNameField));
         driver.findElement(LeadNameField).click();
-        driver.findElement(LeadNameField).sendKeys(leadname);
+        driver.findElement(LeadNameField).sendKeys(LeadName);
     }
 
     @Step("Clicking on Lead Size Button")
-    public void ClickOnLeadSizeButton() {
+    public void ClickOnLeadSizeDropdown() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LeadSizeDropDownButton));
         driver.findElement(LeadSizeDropDownButton).click();
     }
 
     @Step("Clicking on Lead Size Drop Down Button")
-    public void ClickOnLeadTypeButton() {
+    public void ClickOnLeadTypeDropdown() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LeadTypeDropDownButton));
         driver.findElement(LeadTypeDropDownButton).click();
     }
 
-    @Step("Clicking on Lead Size Drop Down Button")
-    public void ClickOnFlagDropDownButton() {
+    @Step("Clicking on Flag dropdown Button")
+    public void ClickOnFlagDropDown() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(FlagDropDownButton));
         driver.findElement(FlagDropDownButton).click();
+    }
+    @Step("Selecting desired Lead Size")
+    public void SelectingLeadSize(int OptionNo) {
+        String formattedXPath = String.format(LeadSizeOptions, OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
+    }
+    @Step("Entering desired text in lead description field")
+    public void EnterLeadDescription() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LeadDescriptionField));
+        driver.findElement(LeadDescriptionField).sendKeys("Test message");
 
     }
 
