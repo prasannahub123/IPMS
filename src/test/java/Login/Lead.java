@@ -35,10 +35,13 @@ public class Lead extends BaseClass {
         lead.ClickOnAddLeadButton();
         lead.EnterLeadName("Prasanna");
         lead.ClickOnLeadSizeDropdown();
-        lead.SelectingLeadSize(2);
+        lead.SelectingLeadSize(1);
         lead.EnterLeadDescription();
         lead.ClickOnLeadTypeDropdown();
         lead.ClickOnFlagDropDown();
+        lead.SelectingLeadType(2);
+        lead.SelectingFlagOption(2);
+        lead.EnteringLeadValue("100000");
 
 
 

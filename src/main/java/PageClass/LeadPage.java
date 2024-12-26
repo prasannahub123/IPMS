@@ -27,6 +27,14 @@ public class LeadPage {
     final By FlagDropDownButton = By.xpath("//select[@name='flag']");
     final String LeadSizeOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
     final By LeadDescriptionField = By.xpath("//div[contains(@class,'relative')]/textarea");
+    final String LeadTypeOptions = ("//select[@name='lead_type']/option[%d]");
+    final String FlagOptions = ("(//select[@name='flag']/option)[%d]");
+    final By LeadValueField = By.xpath("//input[@type='number'][1]");
+
+
+
+
+
 
 
     @Step("Clicking on the Lead menu")
@@ -83,7 +91,24 @@ public class LeadPage {
         driver.findElement(LeadDescriptionField).sendKeys("Test message");
 
     }
-
+    @Step("Selecting desired Lead Type")
+    public void SelectingLeadType(int OptionNo) {
+        String formattedXPath = String.format(LeadTypeOptions, OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
+    }
+    @Step("Selecting desired Flag")
+    public void SelectingFlagOption(int OptionNo) {
+        String formattedXPath = String.format(FlagOptions, OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
+    }
+    @Step("Enter Lead Value")
+    public void EnteringLeadValue(String LeadName) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LeadValueField));
+        driver.findElement(LeadValueField).click();
+        driver.findElement(LeadValueField).sendKeys(LeadName);
+    }
 }
 
 
