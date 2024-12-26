@@ -30,6 +30,7 @@ public class LeadPage {
     final String LeadTypeOptions = ("//select[@name='lead_type']/option[%d]");
     final String FlagOptions = ("(//select[@name='flag']/option)[%d]");
     final By LeadValueField = By.xpath("//input[@type='number'][1]");
+    final String LeadSourceDropDownButton = ("(//select[@name='lead_source_id']//option)[%d]");
 
 
 
@@ -108,6 +109,12 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LeadValueField));
         driver.findElement(LeadValueField).click();
         driver.findElement(LeadValueField).sendKeys(LeadName);
+    }
+    @Step("Selecting desired Lead Source")
+    public void SelectingLeadSource(int OptionNo) {
+        String formattedXPath = String.format(LeadSourceDropDownButton, OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LeadSourceDropDownButton)));
+        driver.findElement(By.xpath(LeadSourceDropDownButton)).click();
     }
 }
 

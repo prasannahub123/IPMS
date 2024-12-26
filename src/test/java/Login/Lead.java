@@ -42,6 +42,7 @@ public class Lead extends BaseClass {
         lead.SelectingLeadType(2);
         lead.SelectingFlagOption(2);
         lead.EnteringLeadValue("100000");
+        lead.SelectingLeadSource(2);
 
 
 
