@@ -30,7 +30,11 @@ public class LeadPage {
     final String LeadTypeOptions = ("//select[@name='lead_type']/option[%d]");
     final String FlagOptions = ("(//select[@name='flag']/option)[%d]");
     final By LeadValueField = By.xpath("//input[@type='number'][1]");
-    final String LeadSourceDropDownButton = ("(//select[@name='lead_source_id']//option)[%d]");
+    final By LeadSource = By.xpath("//select[contains(@name,'lead_source_id')]");
+    final String LeadSourceOptions = ("(//select[contains(@name,'lead_source_id')]/option)[%d]");
+    final String LeadOwnerOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
+    final By LeadOwnerDropdown = By.xpath("//label[contains(text(),'Lead Owner')]/parent::div/following-sibling::div");
+
 
 
 
@@ -111,10 +115,23 @@ public class LeadPage {
         driver.findElement(LeadValueField).sendKeys(LeadName);
     }
     @Step("Selecting desired Lead Source")
-    public void SelectingLeadSource(int OptionNo) {
-        String formattedXPath = String.format(LeadSourceDropDownButton, OptionNo);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LeadSourceDropDownButton)));
-        driver.findElement(By.xpath(LeadSourceDropDownButton)).click();
+    public void SelectingLeadSource(int OptionNo) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LeadSource));
+        driver.findElement(LeadSource).click();
+        Thread.sleep(500);
+        String formattedXPath = String.format(LeadSourceOptions,OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
+        driver.findElement(LeadSource).click();
+    }
+    @Step("Selecting desired Lead owner")
+    public void SelectingLeadOwner(int OptionNo) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LeadOwnerDropdown));
+        driver.findElement(LeadOwnerDropdown).click();
+        Thread.sleep(500);
+        String formattedXPath = String.format(LeadOwnerOptions, OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
     }
 }
 

@@ -30,9 +30,10 @@ public class Lead extends BaseClass {
         logInPage.EnterPassword("SuperAdmin");
         logInPage.ClickContinueButton();
         lead.ClickOnLead();
-//        Thread.sleep(1000);
+        Thread.sleep(1000);
         lead.ClickOnLeadList();
         lead.ClickOnAddLeadButton();
+        Thread.sleep(1000);
         lead.EnterLeadName("Prasanna");
         lead.ClickOnLeadSizeDropdown();
         lead.SelectingLeadSize(1);
@@ -41,8 +42,10 @@ public class Lead extends BaseClass {
         lead.ClickOnFlagDropDown();
         lead.SelectingLeadType(2);
         lead.SelectingFlagOption(2);
-        lead.EnteringLeadValue("100000");
-        lead.SelectingLeadSource(2);
+        lead.EnteringLeadValue("5000");
+        lead.SelectingLeadOwner(4);
+        lead.SelectingLeadSource(3);
+        Thread.sleep(1000);
 
 
 
