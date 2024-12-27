@@ -34,7 +34,7 @@ public class Lead extends BaseClass {
         lead.ClickOnLeadList();
         lead.ClickOnAddLeadButton();
         Thread.sleep(1000);
-        lead.EnterLeadName("Prasanna");
+        lead.EnterLeadName("Rajesh");
         lead.ClickOnLeadSizeDropdown();
         lead.SelectingLeadSize(1);
         lead.EnterLeadDescription();
