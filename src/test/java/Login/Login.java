@@ -18,13 +18,13 @@ public class Login extends BaseClass {
     }
 
 
-        @AfterClass   // browser closer after test complete
+    @AfterClass
     public void Closer() {
         driver.quit();
     }
 
     @Test
-    public  void LogIn() {
+    public void LogIn() {
         logInPage.EnterUserName("snackcoder@gmail.com");
         logInPage.EnterPassword("SuperAdmin");
         logInPage.ClickContinueButton();
