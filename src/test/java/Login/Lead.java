@@ -46,6 +46,10 @@ public class Lead extends BaseClass {
         lead.SelectingLeadOwner(4);
         lead.SelectingLeadSource(3);
         Thread.sleep(1000);
+        lead.SelectingAccountName(3);
+        lead.SelectingContact(2);
+        lead.SelectingStageFor(2);
+        lead.SelectingLeadStage(2);
 
 
 
