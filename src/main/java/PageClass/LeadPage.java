@@ -42,6 +42,8 @@ public class LeadPage {
     final String StageForOptions = ("(//select[@id='stage_for']//option)[%d]");
     final By LeadStage = By.xpath("//select[@id='lead_stage_id']");
     final String LeadStageOptions = ("(//select[@id='lead_stage_id']//option)[%d]");
+    final By CloseButton= By.xpath("//*[name()='svg' and contains(@class, 'lucide lucide-circle-x cursor-pointer mb-2')]");
+
 
 
 
@@ -184,7 +186,13 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
         driver.findElement(By.xpath(formattedXPath)).click();
         driver.findElement(LeadStage).click();
-}}
+}
+    @Step("Clicking on the Close Button")
+    public void ClickOnCloseButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CloseButton));
+        driver.findElement(CloseButton).click();
+    }
+   }
 
 
 
