@@ -50,7 +50,7 @@ public class Lead extends BaseClass {
         lead.SelectingContact(2);
         lead.SelectingStageFor(2);
         lead.SelectingLeadStage(2);
-        lead.ClickOnCloseButton();
+        //lead.ClickOnCloseButton();
 
 
 
