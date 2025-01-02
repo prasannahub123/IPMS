@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Date;
 
 public class LeadPage {
     WebDriver driver;
@@ -42,7 +43,6 @@ public class LeadPage {
     final String StageForOptions = ("(//select[@id='stage_for']//option)[%d]");
     final By LeadStage = By.xpath("//select[@id='lead_stage_id']");
     final String LeadStageOptions = ("(//select[@id='lead_stage_id']//option)[%d]");
-    final By CloseButton= By.xpath("//*[name()='svg' and contains(@class, 'lucide lucide-circle-x cursor-pointer mb-2')]");
     final By AddLeadOwner = By.xpath("//*[name()='svg' and contains(@class, 'lucide-circle-plus')]");
     final By LoginCodeField = By.xpath("//input[@type='text' and @name='user_code']");
    // final By Department = By.xpath ("//div[contains(@class, ' css-15lsz6c-indicatorContainer')]");
@@ -57,6 +57,11 @@ public class LeadPage {
 
 
 
+    final By CloseButton = By.xpath("//*[name()='svg' and contains(@class, 'lucide lucide-circle-x cursor-pointer mb-2')]");
+    final By DateField = By.xpath("//label[contains(text(),'Proposed Date ')]/following-sibling::input");
+    final By DateFieldCal = By.xpath("//label[contains(text(),'Proposed Date ')]/following-sibling::input[contains(@name,'conv_by_date')]");
+    final By SubmitButton = By.xpath("(//div[contains(@class,'flex gap-1.5 justify-center')]/button[contains(text(),'Submit')])[1]");
+    final By SearchField = By.xpath("//div[contains(@class,'relative w')]/input");
 
 
     @Step("Clicking on the Lead menu")
@@ -203,7 +208,8 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
         driver.findElement(By.xpath(formattedXPath)).click();
         driver.findElement(LeadStage).click();
-}
+    }
+
     @Step("Clicking on the Close Button")
     public void ClickOnCloseButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CloseButton));
@@ -237,8 +243,23 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(EmailIdField));
         driver.findElement(EmailIdField).click();
         driver.findElement(EmailIdField).sendKeys(Email);
+}
+    @Step("Adding desired date")
+    public void AddDesiredDate(String Date) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(DateField));
+        driver.findElement(DateField).click();
+        driver.switchTo().activeElement().sendKeys(Date);
+    }@Step("Clicking on the Submit Button")
+    public void ClickOnSubmitButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SubmitButton));
+        driver.findElement(SubmitButton).click();
     }
-
+    @Step("Enter lead Name in search field")
+    public void EnterLeadNameInSearchField(String LeadName) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SearchField));
+        driver.findElement(SearchField).click();
+        driver.findElement(SearchField).sendKeys(LeadName);
+    }
 
 }
 

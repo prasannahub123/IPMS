@@ -43,6 +43,7 @@ public class Lead extends BaseClass {
         lead.SelectingLeadType(2);
         lead.SelectingFlagOption(2);
         lead.EnteringLeadValue("5000");
+        lead.AddDesiredDate("29-04-2025");
         lead.SelectingLeadOwner(4);
         lead.SelectingLeadSource(3);
         Thread.sleep(1000);
@@ -56,6 +57,7 @@ public class Lead extends BaseClass {
        // lead.ClickOnDepartment();
         lead.EnterUserName("TESTUSER");
         lead.EnterEmail("prasanna.panda@lipl.in");
+
 
 
 
