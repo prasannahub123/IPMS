@@ -43,6 +43,12 @@ public class LeadPage {
     final By LeadStage = By.xpath("//select[@id='lead_stage_id']");
     final String LeadStageOptions = ("(//select[@id='lead_stage_id']//option)[%d]");
     final By CloseButton= By.xpath("//*[name()='svg' and contains(@class, 'lucide lucide-circle-x cursor-pointer mb-2')]");
+    final By AddLeadOwner = By.xpath("//*[name()='svg' and contains(@class, 'lucide-circle-plus')]");
+    final By LoginCodeField = By.xpath("//input[@type='text' and @name='user_code']");
+   // final By Department = By.xpath ("//div[contains(@class, ' css-15lsz6c-indicatorContainer')]");
+    final By UserNameField = By.xpath("//input[@name='user_name']");
+    final By EmailIdField = By.xpath("/html/body/div/div[1]/div[2]/div[3]/div/div/div/div[3]/div/div/div[4]/nav/div/div[2]/section/div[4]/input");
+
 
 
 
@@ -203,7 +209,38 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CloseButton));
         driver.findElement(CloseButton).click();
     }
+    @Step("Clicking on the Add Lead Owner Button")
+    public void ClickOnAddLeadOwner() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AddLeadOwner));
+        driver.findElement(AddLeadOwner).click();
    }
+    @Step("Enter Login Code")
+    public void EnteringLoginCode(String Code) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LoginCodeField));
+        driver.findElement(LoginCodeField).click();
+        driver.findElement(LoginCodeField).sendKeys(Code);
+}
+//    @Step("Clicking on the Department Dropdown Button")
+//    public void ClickOnDepartment() {
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(Department));
+//        driver.findElement(Department).click();
+//}
+    @Step("Enter User Name")
+    public void EnterUserName(String LeadName) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(UserNameField));
+        driver.findElement(UserNameField).click();
+        driver.findElement(UserNameField).sendKeys(LeadName);
+
+}
+    @Step("Enter Email")
+    public void EnterEmail(String Email) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(EmailIdField));
+        driver.findElement(EmailIdField).click();
+        driver.findElement(EmailIdField).sendKeys(Email);
+    }
+
+
+}
 
 
 
