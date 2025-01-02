@@ -54,9 +54,10 @@ public class Lead extends BaseClass {
         //lead.ClickOnCloseButton();
         lead.ClickOnAddLeadOwner();
         lead.EnteringLoginCode("Rajesh_2024");
-       // lead.ClickOnDepartment();
+        lead.ClickOnDepartment(2);
         lead.EnterUserName("TESTUSER");
         lead.EnterEmail("prasanna.panda@lipl.in");
+
 
 
 

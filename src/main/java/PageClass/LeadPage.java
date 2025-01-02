@@ -45,23 +45,15 @@ public class LeadPage {
     final String LeadStageOptions = ("(//select[@id='lead_stage_id']//option)[%d]");
     final By AddLeadOwner = By.xpath("//*[name()='svg' and contains(@class, 'lucide-circle-plus')]");
     final By LoginCodeField = By.xpath("//input[@type='text' and @name='user_code']");
-   // final By Department = By.xpath ("//div[contains(@class, ' css-15lsz6c-indicatorContainer')]");
+     final By DepartmentDropdown = By.xpath ("//label[contains(text(),'Department')]/following-sibling::div/div");
     final By UserNameField = By.xpath("//input[@name='user_name']");
-    final By EmailIdField = By.xpath("/html/body/div/div[1]/div[2]/div[3]/div/div/div/div[3]/div/div/div[4]/nav/div/div[2]/section/div[4]/input");
-
-
-
-
-
-
-
-
-
-    final By CloseButton = By.xpath("//*[name()='svg' and contains(@class, 'lucide lucide-circle-x cursor-pointer mb-2')]");
-    final By DateField = By.xpath("//label[contains(text(),'Proposed Date ')]/following-sibling::input");
-    final By DateFieldCal = By.xpath("//label[contains(text(),'Proposed Date ')]/following-sibling::input[contains(@name,'conv_by_date')]");
-    final By SubmitButton = By.xpath("(//div[contains(@class,'flex gap-1.5 justify-center')]/button[contains(text(),'Submit')])[1]");
+    final By EmailIdField = By.xpath("(//label[contains(text(),'Email')]/following-sibling::input)[3]");
+    final By CloseButton = By.xpath("//*[name()='svg' and contains(@class,'lucide lucide-circle-x cursor-pointer)]");
+    final By DateField = By.xpath("//label[contains(text(),'Proposed Date')]/following-sibling::input");
+    final By DateFieldCal = By.xpath("//label[contains(text(),'Proposed Date')]/following-sibling::input[contains(@name,'conv_by_date')]");
+    final By SubmitButton = By.xpath("(//div[contains(@class,'justify-center')]/button[contains(text(),'Submit')])[1]");
     final By SearchField = By.xpath("//div[contains(@class,'relative w')]/input");
+    final String DepartmentOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
 
 
     @Step("Clicking on the Lead menu")
@@ -215,45 +207,56 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CloseButton));
         driver.findElement(CloseButton).click();
     }
+
     @Step("Clicking on the Add Lead Owner Button")
     public void ClickOnAddLeadOwner() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(AddLeadOwner));
         driver.findElement(AddLeadOwner).click();
-   }
+    }
+
     @Step("Enter Login Code")
     public void EnteringLoginCode(String Code) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LoginCodeField));
         driver.findElement(LoginCodeField).click();
         driver.findElement(LoginCodeField).sendKeys(Code);
-}
-//    @Step("Clicking on the Department Dropdown Button")
-//    public void ClickOnDepartment() {
-//        wait.until(ExpectedConditions.visibilityOfElementLocated(Department));
-//        driver.findElement(Department).click();
-//}
+    }
+
+    @Step("Clicking on the Department Dropdown Button")
+    public void ClickOnDepartment(int OptionNo) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(DepartmentDropdown));
+        driver.findElement(DepartmentDropdown).click();
+        String formattedXPath = String.format(DepartmentOptions, OptionNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
+    }
     @Step("Enter User Name")
     public void EnterUserName(String LeadName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(UserNameField));
         driver.findElement(UserNameField).click();
         driver.findElement(UserNameField).sendKeys(LeadName);
 
-}
+    }
+
     @Step("Enter Email")
     public void EnterEmail(String Email) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(EmailIdField));
         driver.findElement(EmailIdField).click();
         driver.findElement(EmailIdField).sendKeys(Email);
-}
+    }
+
     @Step("Adding desired date")
     public void AddDesiredDate(String Date) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(DateField));
         driver.findElement(DateField).click();
         driver.switchTo().activeElement().sendKeys(Date);
-    }@Step("Clicking on the Submit Button")
+    }
+
+    @Step("Clicking on the Submit Button")
     public void ClickOnSubmitButton() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(SubmitButton));
         driver.findElement(SubmitButton).click();
     }
+
     @Step("Enter lead Name in search field")
     public void EnterLeadNameInSearchField(String LeadName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(SearchField));
