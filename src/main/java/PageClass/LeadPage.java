@@ -54,6 +54,9 @@ public class LeadPage {
     final By SubmitButton = By.xpath("(//div[contains(@class,'justify-center')]/button[contains(text(),'Submit')])[1]");
     final By SearchField = By.xpath("//div[contains(@class,'relative w')]/input");
     final String DepartmentOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
+    final By PasswordField = By.xpath("//input[@name='password']");
+    final By PhoneNumberField = By.xpath("//input[@name='phone_number']");
+    final By UserRoleDropDown =  By.xpath("//select[@class='py-2 px-1 rounded-md border-2']");
 
 
     @Step("Clicking on the Lead menu")
@@ -262,6 +265,23 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(SearchField));
         driver.findElement(SearchField).click();
         driver.findElement(SearchField).sendKeys(LeadName);
+    }
+    @Step("Enter Password")
+    public void EnteringPassword(String Code) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PasswordField));
+        driver.findElement(PasswordField).click();
+        driver.findElement(PasswordField).sendKeys(Code);
+    }
+    @Step("Enter Phone Number")
+    public void EnteringPhoneNumber(String Code) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PhoneNumberField));
+        driver.findElement(PhoneNumberField).click();
+        driver.findElement(PhoneNumberField).sendKeys(Code);
+    }
+    @Step("Enter User Role")
+    public void EnterUserRole() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(UserRoleDropDown));
+        driver.findElement(UserRoleDropDown).click();
     }
 
 }

@@ -57,6 +57,9 @@ public class Lead extends BaseClass {
         lead.ClickOnDepartment(2);
         lead.EnterUserName("TESTUSER");
         lead.EnterEmail("prasanna.panda@lipl.in");
+        lead.EnteringPassword("Password@123");
+        lead.EnteringPhoneNumber("9348544777");
+        lead.EnterUserRole();
 
 
 
