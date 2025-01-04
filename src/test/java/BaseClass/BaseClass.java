@@ -15,7 +15,5 @@ public class BaseClass {
 //        options.addArguments("--headless");
         driver.manage().window().maximize();
         driver.get(Url);
-
-
     }
 }

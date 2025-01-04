@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 public class Lead extends BaseClass {
 
     private LogInPage logInPage;
-    private LeadPage lead ;
+    private LeadPage lead;
 
 
     @BeforeClass
@@ -20,10 +20,12 @@ public class Lead extends BaseClass {
         lead = new LeadPage(driver);
 
     }
-//    @AfterClass
+
+    //    @AfterClass
     public void Closer() {
         driver.quit();
     }
+
     @Test
     public void LeadGeneration() throws InterruptedException {
         logInPage.EnterUserName("snackcoder@gmail.com");
@@ -51,29 +53,28 @@ public class Lead extends BaseClass {
         lead.SelectingContact(2);
         lead.SelectingStageFor(2);
         lead.SelectingLeadStage(2);
-        //lead.ClickOnCloseButton();
+//        lead.ClickOnCloseButton();
         lead.ClickOnAddLeadOwner();
-        lead.EnteringLoginCode("Rajesh_2024");
-        lead.ClickOnDepartment(2);
-        lead.EnterUserName("TESTUSER");
-        lead.EnterEmail("prasanna.panda@lipl.in");
+        lead.EnteringLoginCode("Rajesh_155");
+        lead.ClickOnDepartment(4);
+        lead.EnterUserName("rajesh");
+        lead.EnterEmail("rajesh@gmail.com");
         lead.EnteringPassword("Password@123");
         lead.EnteringPhoneNumber("9348544777");
-        //lead.ClickOnUserRole(3);
-        lead.ClickOnSubmitButtonCreateUser();
+        lead.ClickOnUserRole(2);
+        lead.SelectDesiredParentUser(1);
+//        lead.ClickOnSubmitButtonCreateUser();
+        lead.TempCloseButton();
         lead.ClickOnAddLeadSourceButton();
         lead.EnteringLeadSourceName("TATA Steel Ai DMS");
         lead.EnteringDescription("new Lead BBSR");
+        lead.ClickOnSubmitButtonLeadSource();
+        lead.ClickOnAddAccountNameButton();
         lead.EnteringCustomerName("TATA Steel");
         lead.EnteringCustomerEmail("prasanna.panda.16@gmail.com");
         lead.EnteringCustomerPhoneNumber("8455089863");
         lead.EnteringCustomerAddress("BBSR");
-
-
-
-
-
-
+        lead.ClickOnSubmitButtonCreateCustomer();
 
 
     }
