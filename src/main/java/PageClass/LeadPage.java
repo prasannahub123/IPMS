@@ -45,7 +45,7 @@ public class LeadPage {
     final String LeadStageOptions = ("(//select[@id='lead_stage_id']//option)[%d]");
     final By AddLeadOwner = By.xpath("//*[name()='svg' and contains(@class, 'lucide-circle-plus')]");
     final By LoginCodeField = By.xpath("//input[@type='text' and @name='user_code']");
-     final By DepartmentDropdown = By.xpath ("//label[contains(text(),'Department')]/following-sibling::div/div");
+    final By DepartmentDropdown = By.xpath("//label[contains(text(),'Department')]/following-sibling::div/div");
     final By UserNameField = By.xpath("//input[@name='user_name']");
     final By EmailIdField = By.xpath("(//label[contains(text(),'Email')]/following-sibling::input)[3]");
     final By CloseButton = By.xpath("//*[name()='svg' and contains(@class,'lucide lucide-circle-x cursor-pointer)]");
@@ -56,7 +56,22 @@ public class LeadPage {
     final String DepartmentOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
     final By PasswordField = By.xpath("//input[@name='password']");
     final By PhoneNumberField = By.xpath("//input[@name='phone_number']");
-    final By UserRoleDropDown =  By.xpath("//select[@class='py-2 px-1 rounded-md border-2']");
+    //final By UserRoleDropDown =  By.xpath("(//div[@class='grid w-full max-w-sm items-center gap-1.5']/descendant::select[@class='py-2 px-1 rounded-md border-2']/descendant::option)[1]");
+    final By SubmitButtonCreateUser = By.xpath("(//button[contains(@class, 'bg-primary') and text()='Submit'])[5]");
+    final By AddLeadSource = By.xpath("(//*[name()='svg' and contains(@class, 'lucide-circle-plus')])[2]");
+    final By LeadSourceNameField = By.xpath("//input[@type='text' and @name='lead_source_name' and contains(@class,'rounded-md')]");
+    final By CreateLeadSourceDescriptionField = By.xpath("//textarea[@name='description' and contains(@class,'rounded-md')]");
+    final By CreateLeadSourceSubmitButton = By .xpath("//button[@fdprocessedid='iplzes' and text()='Submit']");
+    final By AddAccountName = By.xpath("(//*[name()='svg' and contains(@class, 'lucide-circle-plus')])[3]");
+    final By CustomerNameField = By.xpath("(//input[@name='name' and @type='text'])[2]");
+    final By CreateCustomerEmailField = By.xpath("(//input[@name='email' and @type='email'])[2]");
+    final By CreateCustomerPhoneField = By.xpath("(//input[@name='phone' and @type='number'])[2]");
+    final By AddressField = By.xpath("(//textarea[@name='address'])[2]");
+
+
+
+
+
 
 
     @Step("Clicking on the Lead menu")
@@ -232,6 +247,7 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
         driver.findElement(By.xpath(formattedXPath)).click();
     }
+
     @Step("Enter User Name")
     public void EnterUserName(String LeadName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(UserNameField));
@@ -266,25 +282,91 @@ public class LeadPage {
         driver.findElement(SearchField).click();
         driver.findElement(SearchField).sendKeys(LeadName);
     }
+
     @Step("Enter Password")
-    public void EnteringPassword(String Code) {
+    public void EnteringPassword(String Password) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(PasswordField));
         driver.findElement(PasswordField).click();
-        driver.findElement(PasswordField).sendKeys(Code);
-    }
-    @Step("Enter Phone Number")
-    public void EnteringPhoneNumber(String Code) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(PhoneNumberField));
-        driver.findElement(PhoneNumberField).click();
-        driver.findElement(PhoneNumberField).sendKeys(Code);
-    }
-    @Step("Enter User Role")
-    public void EnterUserRole() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(UserRoleDropDown));
-        driver.findElement(UserRoleDropDown).click();
+        driver.findElement(PasswordField).sendKeys(Password);
     }
 
+    @Step("Enter Phone Number")
+    public void EnteringPhoneNumber(String Number) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PhoneNumberField));
+        driver.findElement(PhoneNumberField).click();
+        driver.findElement(PhoneNumberField).sendKeys(Number);
+    }
+
+    //    @Step("Clicking on the User Role Dropdown Button")
+//    public void ClickOnUserRole(int OptionNo) {
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(UserRoleDropDown));
+//        driver.findElement(UserRoleDropDown).click();
+//        String formattedXPath = String.format(String.valueOf(UserRoleDropDown), OptionNo);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+//        driver.findElement(By.xpath(formattedXPath)).click();
+//    }
+    @Step("Clicking on Submit Button in Create user module")
+    public void ClickOnSubmitButtonCreateUser() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SubmitButton));
+        driver.findElement(SubmitButton).click();
+    }
+
+    @Step("Clicking on the add Lead Source Button")
+    public void ClickOnAddLeadSourceButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AddLeadSource));
+        driver.findElement(AddLeadSource).click();
+    }
+    @Step("Enter desired Lead Source Name")
+    public void EnteringLeadSourceName(String Name) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(LeadSourceNameField));
+        driver.findElement(LeadSourceNameField).click();
+        driver.findElement(LeadSourceNameField).sendKeys(Name);
+    }
+    @Step("Enter desired Description")
+    public void EnteringDescription(String Description) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CreateLeadSourceDescriptionField));
+        driver.findElement(CreateLeadSourceDescriptionField).click();
+        driver.findElement(CreateLeadSourceDescriptionField).sendKeys(Description);
+    }
+    @Step("Clicking on Create Lead Source Submit Button")
+    public void ClickOnCreateLeadSourceSubmitButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CreateLeadSourceSubmitButton));
+        driver.findElement(CreateLeadSourceSubmitButton).click();
+    }
+    @Step("Clicking on the add Account Name Button")
+    public void ClickOnAddAccountNameButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AddAccountName));
+        driver.findElement(AddAccountName).click();
+    }
+    @Step("Enter Customer Name")
+    public void EnteringCustomerName(String CustomerName) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CustomerNameField));
+        driver.findElement(CustomerNameField).click();
+        driver.findElement(CustomerNameField).sendKeys(CustomerName);
+    }
+    @Step("Enter Customer Email")
+    public void EnteringCustomerEmail(String CustomerEmail) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CreateCustomerEmailField));
+        driver.findElement(CreateCustomerEmailField).click();
+        driver.findElement(CreateCustomerEmailField).sendKeys(CustomerEmail);
+    }
+    @Step("Enter Customer PhoneNo")
+    public void EnteringCustomerPhoneNumber(String CustomerPhoneNumber) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CreateCustomerPhoneField));
+        driver.findElement(CreateCustomerPhoneField).click();
+        driver.findElement(CreateCustomerPhoneField).sendKeys(CustomerPhoneNumber);
+    }
+    @Step("Enter Customer Address")
+    public void EnteringCustomerAddress(String CustomerAddress) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AddressField));
+        driver.findElement(AddressField).click();
+        driver.findElement(AddressField).sendKeys(CustomerAddress);
+    }
+
+
 }
+
+
 
 
 

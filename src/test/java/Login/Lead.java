@@ -59,7 +59,16 @@ public class Lead extends BaseClass {
         lead.EnterEmail("prasanna.panda@lipl.in");
         lead.EnteringPassword("Password@123");
         lead.EnteringPhoneNumber("9348544777");
-        lead.EnterUserRole();
+        //lead.ClickOnUserRole(3);
+        lead.ClickOnSubmitButtonCreateUser();
+        lead.ClickOnAddLeadSourceButton();
+        lead.EnteringLeadSourceName("TATA Steel Ai DMS");
+        lead.EnteringDescription("new Lead BBSR");
+        lead.EnteringCustomerName("TATA Steel");
+        lead.EnteringCustomerEmail("prasanna.panda.16@gmail.com");
+        lead.EnteringCustomerPhoneNumber("8455089863");
+        lead.EnteringCustomerAddress("BBSR");
+
 
 
 
