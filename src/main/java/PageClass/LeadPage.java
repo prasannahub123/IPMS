@@ -72,6 +72,7 @@ public class LeadPage {
     final By AddressField = By.xpath("(//textarea[@name='address'])[2]");
     final By ParentUser = By.xpath("//label[contains(text(),'Parent User ')]/following-sibling::div");
     final String ParentUserOptions = ("(//label[contains(text(),'Parent User')]/following-sibling::div/descendant::div[contains(@class,'option')])[%d]");
+    final By ContactAddButton = By.xpath("(//*[name()='svg' and contains(@class,'lucide-circle-plus')])[4]");
 
 
     @Step("Clicking on the Lead menu")
@@ -394,6 +395,11 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(AddressField));
         driver.findElement(AddressField).click();
         driver.findElement(AddressField).sendKeys(CustomerAddress);
+    }
+    @Step("Clicking on the add Contact Button")
+    public void ClickOnAddContactButton() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(ContactAddButton));
+        driver.findElement(ContactAddButton).click();
     }
 
 

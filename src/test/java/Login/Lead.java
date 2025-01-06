@@ -36,38 +36,38 @@ public class Lead extends BaseClass {
         lead.ClickOnLeadList();
         lead.ClickOnAddLeadButton();
         Thread.sleep(1000);
-        lead.EnterLeadName("Rajesh");
+        lead.EnterLeadName("TestLead001");
         lead.ClickOnLeadSizeDropdown();
-        lead.SelectingLeadSize(1);
+        lead.SelectingLeadSize(2);
         lead.EnterLeadDescription();
         lead.ClickOnLeadTypeDropdown();
         lead.ClickOnFlagDropDown();
-        lead.SelectingLeadType(2);
-        lead.SelectingFlagOption(2);
-        lead.EnteringLeadValue("5000");
-        lead.AddDesiredDate("29-04-2025");
-        lead.SelectingLeadOwner(4);
-        lead.SelectingLeadSource(3);
+        lead.SelectingLeadType(1);
+        lead.SelectingFlagOption(3);
+        lead.EnteringLeadValue("1000000");
+        lead.AddDesiredDate("10-01-2025");
+        lead.SelectingLeadOwner(1);
+        lead.SelectingLeadSource(7);
         Thread.sleep(1000);
-        lead.SelectingAccountName(3);
+        lead.SelectingAccountName(11);
         lead.SelectingContact(2);
         lead.SelectingStageFor(2);
         lead.SelectingLeadStage(2);
 //        lead.ClickOnCloseButton();
         lead.ClickOnAddLeadOwner();
-        lead.EnteringLoginCode("Rajesh_155");
+        lead.EnteringLoginCode("Rajesh_156");
         lead.ClickOnDepartment(4);
-        lead.EnterUserName("rajesh");
-        lead.EnterEmail("rajesh@gmail.com");
+        lead.EnterUserName("TestR");
+        lead.EnterEmail("testR@gmail.com");
         lead.EnteringPassword("Password@123");
-        lead.EnteringPhoneNumber("9348544777");
-        lead.ClickOnUserRole(2);
-        lead.SelectDesiredParentUser(1);
+        lead.EnteringPhoneNumber("9348544778");
+        lead.ClickOnUserRole(7);
+        lead.SelectDesiredParentUser(7);
 //        lead.ClickOnSubmitButtonCreateUser();
         lead.TempCloseButton();
         lead.ClickOnAddLeadSourceButton();
-        lead.EnteringLeadSourceName("TATA Steel Ai DMS");
-        lead.EnteringDescription("new Lead BBSR");
+        lead.EnteringLeadSourceName("FireSafety-WEB");
+        lead.EnteringDescription("Web Design and Development of FireSafety");
         lead.ClickOnSubmitButtonLeadSource();
         lead.ClickOnAddAccountNameButton();
         lead.EnteringCustomerName("TATA Steel");
@@ -75,7 +75,6 @@ public class Lead extends BaseClass {
         lead.EnteringCustomerPhoneNumber("8455089863");
         lead.EnteringCustomerAddress("BBSR");
         lead.ClickOnSubmitButtonCreateCustomer();
-
-
+        lead.ClickOnAddContactButton();
     }
 }
