@@ -77,6 +77,14 @@ public class LeadPage {
     final By CustomerNameInCreateContact = By.xpath("//div[@id='react-select-4-placeholder']");
     final String CustomerNameOptions = ("(//div[contains(@id, 'react-select-4-option') and contains(@class, 'css-10wo9uf-option')])[%d]");
     final By AccountNameField = By.xpath("(//input[@type='text' and @name='name' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
+    final By PhoneInCreateAccount = By.xpath("(//input[@type='number' and @name='phone' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
+    final By EmailInCreateAccount = By.xpath("(//input[@type='email' and @name='email' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
+
+
+
+
+
+
 
 
     @Step("Clicking on the Lead menu")
@@ -427,8 +435,23 @@ public class LeadPage {
         driver.findElement(AccountNameField).click();
         driver.findElement(AccountNameField).sendKeys(AccountName);
 
+    }
+    @Step("Enter Desired Phone")
+    public void EnteringPhone(String Number) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(PhoneInCreateAccount));
+        driver.findElement(PhoneInCreateAccount).click();
+        driver.findElement(PhoneInCreateAccount).sendKeys(Number);
 
-}}
+    }
+    @Step("Enter Desired Email")
+    public void EnteringEmail(String Email) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(EmailInCreateAccount));
+        driver.findElement(EmailInCreateAccount).click();
+        driver.findElement(EmailInCreateAccount).sendKeys(Email);
+    }
+
+
+}
 
 
 

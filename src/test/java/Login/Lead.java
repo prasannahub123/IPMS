@@ -78,5 +78,7 @@ public class Lead extends BaseClass {
         lead.ClickOnAddContactButton();
         lead.SelectingDesiredCustomerName(2);
         lead.EnterAccountNameInCreateAccount("J p Gupta");
+        lead.EnteringPhone("8455089863");
+        lead.EnteringEmail("example@gmail.com");
     }
 }
