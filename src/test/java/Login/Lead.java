@@ -55,10 +55,10 @@ public class Lead extends BaseClass {
         lead.SelectingLeadStage(2);
 //        lead.ClickOnCloseButton();
         lead.ClickOnAddLeadOwner();
-        lead.EnteringLoginCode("Rajesh_156");
+        lead.EnteringLoginCode(4);
         lead.ClickOnDepartment(4);
         lead.EnterUserName("TestR");
-        lead.EnterEmail("testR@gmail.com");
+        lead.EnterEmail("mail",5);
         lead.EnteringPassword("Password@123");
         lead.EnteringPhoneNumber("9348544778");
         lead.ClickOnUserRole(7);
@@ -66,19 +66,19 @@ public class Lead extends BaseClass {
 //        lead.ClickOnSubmitButtonCreateUser();
         lead.TempCloseButton();
         lead.ClickOnAddLeadSourceButton();
-        lead.EnteringLeadSourceName("FireSafety-WEB");
+        lead.EnteringLeadSourceName("randomdata",5);
         lead.EnteringDescription("Web Design and Development of FireSafety");
         lead.ClickOnSubmitButtonLeadSource();
         lead.ClickOnAddAccountNameButton();
-        lead.EnteringCustomerName("TATA Steel");
-        lead.EnteringCustomerEmail("prasanna.panda.16@gmail.com");
-        lead.EnteringCustomerPhoneNumber("8455089863");
+        lead.EnteringCustomerName("randomdata",6);
+        lead.EnteringCustomerEmail("mail",6);
+        lead.EnteringCustomerPhoneNumber();
         lead.EnteringCustomerAddress("BBSR");
         lead.ClickOnSubmitButtonCreateCustomer();
         lead.ClickOnAddContactButton();
         lead.SelectingDesiredCustomerName(2);
-        lead.EnterAccountNameInCreateAccount("J p Gupta");
+        lead.EnterAccountNameInCreateAccount("randomdata",6);
         lead.EnteringPhone("8455089863");
-        lead.EnteringEmail("example@gmail.com");
+        lead.EnteringEmail("mail",6);
     }
 }

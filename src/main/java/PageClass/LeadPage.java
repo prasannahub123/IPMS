@@ -8,8 +8,10 @@ import org.openqa.selenium.devtools.v129.fedcm.model.Account;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.security.SecureRandom;
 import java.time.Duration;
 import java.util.Date;
+import java.util.Random;
 
 public class LeadPage {
     WebDriver driver;
@@ -74,8 +76,8 @@ public class LeadPage {
     final By ParentUser = By.xpath("//label[contains(text(),'Parent User ')]/following-sibling::div");
     final String ParentUserOptions = ("(//label[contains(text(),'Parent User')]/following-sibling::div/descendant::div[contains(@class,'option')])[%d]");
     final By ContactAddButton = By.xpath("(//*[name()='svg' and contains(@class,'lucide-circle-plus')])[4]");
-    final By CustomerNameInCreateContact = By.xpath("//div[@id='react-select-4-placeholder']");
-    final String CustomerNameOptions = ("(//div[contains(@id, 'react-select-4-option') and contains(@class, 'css-10wo9uf-option')])[%d]");
+    final By CustomerNameInCreateContact = By.xpath("//div[contains(text(),'Search customers')]/parent::div");
+    final String CustomerNameOptions = ("(//div[contains(@id,'listbox')]/div)[%d]");
     final By AccountNameField = By.xpath("(//input[@type='text' and @name='name' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
     final By PhoneInCreateAccount = By.xpath("(//input[@type='number' and @name='phone' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
     final By EmailInCreateAccount = By.xpath("(//input[@type='email' and @name='email' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
@@ -246,10 +248,12 @@ public class LeadPage {
     }
 
     @Step("Enter Login Code")
-    public void EnteringLoginCode(String Code) {
+    public void EnteringLoginCode(int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LoginCodeField));
         driver.findElement(LoginCodeField).click();
-        driver.findElement(LoginCodeField).sendKeys(Code);
+        String RandomLoginCode = String.valueOf(RandomString(count));
+        System.out.println(RandomLoginCode);
+        driver.findElement(LoginCodeField).sendKeys(RandomLoginCode);
     }
 
     @Step("Clicking on the Department Dropdown Button")
@@ -270,10 +274,11 @@ public class LeadPage {
     }
 
     @Step("Enter Email")
-    public void EnterEmail(String Email) {
+    public void EnterEmail(String mail,int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(EmailIdField));
         driver.findElement(EmailIdField).click();
-        driver.findElement(EmailIdField).sendKeys(Email);
+        String RandomEmail = String.valueOf(generateRandomData(mail,count));
+        driver.findElement(EmailIdField).sendKeys(RandomEmail);
     }
 
     @Step("Adding desired date")
@@ -356,10 +361,11 @@ public class LeadPage {
     }
 
     @Step("Enter desired Lead Source Name")
-    public void EnteringLeadSourceName(String Name) {
+    public void EnteringLeadSourceName(String usecase,int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LeadSourceNameField));
         driver.findElement(LeadSourceNameField).click();
-        driver.findElement(LeadSourceNameField).sendKeys(Name);
+        String RandomLeadSourceName= String.valueOf(generateRandomData(usecase,count));
+        driver.findElement(LeadSourceNameField).sendKeys(RandomLeadSourceName);
     }
 
     @Step("Enter desired Description")
@@ -382,24 +388,27 @@ public class LeadPage {
     }
 
     @Step("Enter Customer Name")
-    public void EnteringCustomerName(String CustomerName) {
+    public void EnteringCustomerName(String usecase,int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CustomerNameField));
         driver.findElement(CustomerNameField).click();
-        driver.findElement(CustomerNameField).sendKeys(CustomerName);
+        String RandomCustomerName= String.valueOf(generateRandomData(usecase,count));
+        driver.findElement(CustomerNameField).sendKeys(RandomCustomerName);
     }
 
     @Step("Enter Customer Email")
-    public void EnteringCustomerEmail(String CustomerEmail) {
+    public void EnteringCustomerEmail(String usecase,int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CreateCustomerEmailField));
         driver.findElement(CreateCustomerEmailField).click();
-        driver.findElement(CreateCustomerEmailField).sendKeys(CustomerEmail);
+        String RandomCustomerEmail= String.valueOf(generateRandomData(usecase,count));
+        driver.findElement(CreateCustomerEmailField).sendKeys(RandomCustomerEmail);
     }
 
     @Step("Enter Customer PhoneNo")
-    public void EnteringCustomerPhoneNumber(String CustomerPhoneNumber) {
+    public void EnteringCustomerPhoneNumber() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CreateCustomerPhoneField));
         driver.findElement(CreateCustomerPhoneField).click();
-        driver.findElement(CreateCustomerPhoneField).sendKeys(CustomerPhoneNumber);
+        String RandomPhoneNumber =generatePhoneNumber();
+        driver.findElement(CreateCustomerPhoneField).sendKeys(RandomPhoneNumber);
     }
 
     @Step("Enter Customer Address")
@@ -426,14 +435,15 @@ public class LeadPage {
         String formattedXPath = String.format(CustomerNameOptions, CustNo);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
         driver.findElement(By.xpath(formattedXPath)).click();
-        driver.findElement(CustomerNameInCreateContact).click();
+//        driver.findElement(CustomerNameInCreateContact).click();
     }
 
     @Step("Enter Account Name ")
-    public void EnterAccountNameInCreateAccount(String AccountName) {
+    public void EnterAccountNameInCreateAccount(String usecase,int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(AccountNameField));
         driver.findElement(AccountNameField).click();
-        driver.findElement(AccountNameField).sendKeys(AccountName);
+        String RandomAccountName= String.valueOf(generateRandomData(usecase,count));
+        driver.findElement(AccountNameField).sendKeys(RandomAccountName);
 
     }
     @Step("Enter Desired Phone")
@@ -444,11 +454,61 @@ public class LeadPage {
 
     }
     @Step("Enter Desired Email")
-    public void EnteringEmail(String Email) {
+    public void EnteringEmail(String usecase,int count) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(EmailInCreateAccount));
         driver.findElement(EmailInCreateAccount).click();
-        driver.findElement(EmailInCreateAccount).sendKeys(Email);
+        String RandomEmail = String.valueOf(generateRandomData(usecase,count));
+        driver.findElement(EmailInCreateAccount).sendKeys(RandomEmail);
     }
+    public StringBuilder RandomString(int count) {
+        String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn_0123456789";
+        StringBuilder randomString = new StringBuilder();
+        String fixedPart = "QATester";
+        SecureRandom rand = new SecureRandom();
+
+        randomString.append(fixedPart);
+
+        for (int i = 0; i < count; i++) {
+            int randomIndex = rand.nextInt(ALPHANUMERIC_STRING.length());
+            char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
+            randomString.append(randomChar);
+        }
+        return randomString;
+    }
+    public StringBuilder generateRandomData(String useCase, int count) {
+        String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijk0123456789";
+        StringBuilder result = new StringBuilder();
+        String fixedPart = "QATesting";
+        SecureRandom rand = new SecureRandom();
+        for (int i = 0; i < count; i++) {
+            int randomIndex = rand.nextInt(ALPHANUMERIC_STRING.length());
+            char randomChar = ALPHANUMERIC_STRING.charAt(randomIndex);
+            result.append(randomChar);
+        }
+        if (useCase.equalsIgnoreCase("mail")) {
+            return result.append("@gmail.com");
+        } else if (useCase.equalsIgnoreCase("randomdata")) {
+
+            return new StringBuilder(fixedPart).append(result);
+        }
+        return result;
+    }
+
+
+        public static String generatePhoneNumber() {
+            Random rand = new Random();
+            // Generate a 10-digit number
+            long phoneNumber = rand.nextLong(10000000000L); // 10 digits
+
+            // Ensure it's positive and 10 digits long
+            phoneNumber = Math.abs(phoneNumber) % 10000000000L;
+
+            // Return the phone number as a string
+            return String.format("%010d", phoneNumber);
+        }
+
+
+
 
 
 }
