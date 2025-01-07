@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.devtools.v129.fedcm.model.Account;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -73,6 +74,9 @@ public class LeadPage {
     final By ParentUser = By.xpath("//label[contains(text(),'Parent User ')]/following-sibling::div");
     final String ParentUserOptions = ("(//label[contains(text(),'Parent User')]/following-sibling::div/descendant::div[contains(@class,'option')])[%d]");
     final By ContactAddButton = By.xpath("(//*[name()='svg' and contains(@class,'lucide-circle-plus')])[4]");
+    final By CustomerNameInCreateContact = By.xpath("//div[@id='react-select-4-placeholder']");
+    final String CustomerNameOptions = ("(//div[contains(@id, 'react-select-4-option') and contains(@class, 'css-10wo9uf-option')])[%d]");
+    final By AccountNameField = By.xpath("(//input[@type='text' and @name='name' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
 
 
     @Step("Clicking on the Lead menu")
@@ -401,9 +405,30 @@ public class LeadPage {
         wait.until(ExpectedConditions.visibilityOfElementLocated(ContactAddButton));
         driver.findElement(ContactAddButton).click();
     }
+    @Step("Clicking on the Customer Name dropdown In Create Account Menu")
+    public void ClickOnCustomerNameDropDown() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CustomerNameInCreateContact));
+        driver.findElement(CustomerNameInCreateContact).click();
+    }
+    @Step("Selecting desired Customer Name Create Contact ")
+    public void SelectingDesiredCustomerName(int CustNo) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(CustomerNameInCreateContact));
+        driver.findElement(CustomerNameInCreateContact).click();
+        Thread.sleep(500);
+        String formattedXPath = String.format(CustomerNameOptions, CustNo);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
+        driver.findElement(By.xpath(formattedXPath)).click();
+        driver.findElement(CustomerNameInCreateContact).click();
+    }
+
+    @Step("Enter Account Name ")
+    public void EnterAccountNameInCreateAccount(String AccountName) {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AccountNameField));
+        driver.findElement(AccountNameField).click();
+        driver.findElement(AccountNameField).sendKeys(AccountName);
 
 
-}
+}}
 
 
 

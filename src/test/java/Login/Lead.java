@@ -76,5 +76,7 @@ public class Lead extends BaseClass {
         lead.EnteringCustomerAddress("BBSR");
         lead.ClickOnSubmitButtonCreateCustomer();
         lead.ClickOnAddContactButton();
+        lead.SelectingDesiredCustomerName(2);
+        lead.EnterAccountNameInCreateAccount("J p Gupta");
     }
 }
