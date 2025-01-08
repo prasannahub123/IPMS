@@ -81,6 +81,8 @@ public class LeadPage {
     final By AccountNameField = By.xpath("(//input[@type='text' and @name='name' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
     final By PhoneInCreateAccount = By.xpath("(//input[@type='number' and @name='phone' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
     final By EmailInCreateAccount = By.xpath("(//input[@type='email' and @name='email' and contains(@class,'flex h-10 w-full rounded-md border border-input')])[1]");
+    final By AddressInCreateAccount = By.xpath("(//textarea[@name='address' and contains(@class, 'flex min-h-[80px] w-full rounded-md')])[1]");
+    final By SubmitButtonInCreateAccount = By.xpath("(//button[contains(@class, 'inline-flex items-center justify-center') and text()='Submit'])[1]");
 
 
 
@@ -369,10 +371,11 @@ public class LeadPage {
     }
 
     @Step("Enter desired Description")
-    public void EnteringDescription(String Description) {
+    public void EnteringDescription() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(CreateLeadSourceDescriptionField));
         driver.findElement(CreateLeadSourceDescriptionField).click();
-        driver.findElement(CreateLeadSourceDescriptionField).sendKeys(Description);
+        String randomDescription= RandomDescriptionGenerator.generateRandomDescription(2);
+        driver.findElement(CreateLeadSourceDescriptionField).sendKeys(randomDescription);
     }
 
     @Step("Clicking on Create Lead Source Submit Button")
@@ -412,10 +415,11 @@ public class LeadPage {
     }
 
     @Step("Enter Customer Address")
-    public void EnteringCustomerAddress(String CustomerAddress) {
+    public void EnteringCustomerAddress() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(AddressField));
         driver.findElement(AddressField).click();
-        driver.findElement(AddressField).sendKeys(CustomerAddress);
+        String RandomAddress = RandomAddressGenerator.generateRandomAddress();
+        driver.findElement(AddressField).sendKeys(RandomAddress);
     }
     @Step("Clicking on the add Contact Button")
     public void ClickOnAddContactButton() {
@@ -447,10 +451,11 @@ public class LeadPage {
 
     }
     @Step("Enter Desired Phone")
-    public void EnteringPhone(String Number) {
+    public void EnteringPhone() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(PhoneInCreateAccount));
         driver.findElement(PhoneInCreateAccount).click();
-        driver.findElement(PhoneInCreateAccount).sendKeys(Number);
+        String RandomPhoneNumber =generatePhoneNumber();
+        driver.findElement(PhoneInCreateAccount).sendKeys(RandomPhoneNumber);
 
     }
     @Step("Enter Desired Email")
@@ -459,6 +464,18 @@ public class LeadPage {
         driver.findElement(EmailInCreateAccount).click();
         String RandomEmail = String.valueOf(generateRandomData(usecase,count));
         driver.findElement(EmailInCreateAccount).sendKeys(RandomEmail);
+    }
+    @Step("Enter Address in Create Account")
+    public void EnteringAddress() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(AddressInCreateAccount));
+        driver.findElement(AddressInCreateAccount).click();
+        String RandomAddress = RandomAddressGenerator.generateRandomAddress();
+        driver.findElement(AddressInCreateAccount).sendKeys(RandomAddress);
+    }
+    @Step("Clicking on the Submit Button In Create Account")
+    public void ClickOnSubmitButtonInCreateAccount() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(SubmitButtonInCreateAccount));
+        driver.findElement(SubmitButtonInCreateAccount).click();
     }
     public StringBuilder RandomString(int count) {
         String ALPHANUMERIC_STRING = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmn_0123456789";
@@ -506,6 +523,96 @@ public class LeadPage {
             // Return the phone number as a string
             return String.format("%010d", phoneNumber);
         }
+
+    public static class RandomAddressGenerator {
+        private static final String[] STREET_NAMES = {
+                "Maple", "Oak", "Pine", "Elm", "Cedar", "Birch", "Willow", "Main", "High", "Park"
+        };
+        private static final String[] CITY_NAMES = {
+                "Springfield", "Rivertown", "Greenville", "Fairview", "Madison", "Clifton", "Centerville"
+        };
+        private static final String[] STATE_CODES = {
+                "CA", "NY", "TX", "FL", "IL", "PA", "OH", "MI", "GA", "NC"
+        };
+        private static final SecureRandom RAND = new SecureRandom();
+
+        public static String generateRandomAddress() {
+            // Generate street number (1-9999)
+            int streetNumber = RAND.nextInt(9999) + 1;
+
+            // Select a random street name
+            String streetName = STREET_NAMES[RAND.nextInt(STREET_NAMES.length)];
+            String streetSuffix = getRandomStreetSuffix();
+
+            // Select a random city
+            String city = CITY_NAMES[RAND.nextInt(CITY_NAMES.length)];
+
+            // Select a random state
+            String state = STATE_CODES[RAND.nextInt(STATE_CODES.length)];
+
+            // Generate a random ZIP code (10000-99999)
+            int zipCode = RAND.nextInt(90000) + 10000;
+
+            // Combine all components into an address
+            return streetNumber + " " + streetName + " " + streetSuffix + ", " + city + ", " + state + " " + zipCode;
+        }
+
+        private static String getRandomStreetSuffix() {
+            String[] suffixes = {"St", "Ave", "Blvd", "Ln", "Dr", "Ct", "Rd", "Way", "Pl"};
+            return suffixes[RAND.nextInt(suffixes.length)];
+        }
+
+        public static void main(String[] args) {
+            // Generate and print 5 random addresses
+            for (int i = 0; i < 5; i++) {
+                System.out.println(generateRandomAddress());
+            }
+        }
+    }
+
+    public static class RandomDescriptionGenerator {
+        private static final String[] SUBJECTS = {
+                "This product", "The software", "The tool", "Our team", "The feature", "The system"
+        };
+        private static final String[] VERBS = {
+                "provides", "delivers", "ensures", "offers", "supports", "facilitates"
+        };
+        private static final String[] OBJECTS = {
+                "high performance", "reliable functionality", "seamless integration", "ease of use",
+                "cost efficiency", "enhanced security"
+        };
+        private static final String[] ENDINGS = {
+                "to meet your needs.", "for optimal results.", "with minimal effort.",
+                "for better outcomes.", "with top-notch quality.", "to ensure satisfaction."
+        };
+
+        private static final SecureRandom RAND = new SecureRandom();
+
+        public static String generateRandomDescription(int sentenceCount) {
+            StringBuilder description = new StringBuilder();
+
+            for (int i = 0; i < sentenceCount; i++) {
+                String subject = SUBJECTS[RAND.nextInt(SUBJECTS.length)];
+                String verb = VERBS[RAND.nextInt(VERBS.length)];
+                String object = OBJECTS[RAND.nextInt(OBJECTS.length)];
+                String ending = ENDINGS[RAND.nextInt(ENDINGS.length)];
+
+                // Construct a sentence
+                String sentence = subject + " " + verb + " " + object + " " + ending;
+                description.append(sentence).append(" ");
+            }
+
+            return description.toString().trim();
+        }
+
+        public static void main(String[] args) {
+            // Generate and print random descriptions
+            System.out.println(generateRandomDescription(2));
+
+        }
+    }
+
+
 
 
 

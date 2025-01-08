@@ -28,14 +28,17 @@ public class Lead extends BaseClass {
 
     @Test
     public void LeadGeneration() throws InterruptedException {
+        //Browser Open & Login
         logInPage.EnterUserName("snackcoder@gmail.com");
         logInPage.EnterPassword("SuperAdmin");
         logInPage.ClickContinueButton();
+        //Then Lead Operation starts with Clicking on Lead
         lead.ClickOnLead();
         Thread.sleep(1000);
         lead.ClickOnLeadList();
         lead.ClickOnAddLeadButton();
         Thread.sleep(1000);
+        //Then Creating Lead Starts in Create Lead Window
         lead.EnterLeadName("TestLead001");
         lead.ClickOnLeadSizeDropdown();
         lead.SelectingLeadSize(2);
@@ -54,6 +57,7 @@ public class Lead extends BaseClass {
         lead.SelectingStageFor(2);
         lead.SelectingLeadStage(2);
 //        lead.ClickOnCloseButton();
+        //Clicking on Plus Icon For Adding Lead Owner
         lead.ClickOnAddLeadOwner();
         lead.EnteringLoginCode(4);
         lead.ClickOnDepartment(4);
@@ -65,20 +69,25 @@ public class Lead extends BaseClass {
         lead.SelectDesiredParentUser(7);
 //        lead.ClickOnSubmitButtonCreateUser();
         lead.TempCloseButton();
+        //Clicking on Plus Icon For Adding Lead Source
         lead.ClickOnAddLeadSourceButton();
         lead.EnteringLeadSourceName("randomdata",5);
-        lead.EnteringDescription("Web Design and Development of FireSafety");
+        lead.EnteringDescription();
         lead.ClickOnSubmitButtonLeadSource();
+        //Clicking on Plus Icon For Adding Account Name(Creating Customer)
         lead.ClickOnAddAccountNameButton();
         lead.EnteringCustomerName("randomdata",6);
         lead.EnteringCustomerEmail("mail",6);
         lead.EnteringCustomerPhoneNumber();
-        lead.EnteringCustomerAddress("BBSR");
+        lead.EnteringCustomerAddress();
         lead.ClickOnSubmitButtonCreateCustomer();
+        //Clicking on Plus Icon For Adding Contact Details(Create Account)
         lead.ClickOnAddContactButton();
-        lead.SelectingDesiredCustomerName(2);
+        lead.SelectingDesiredCustomerName(4);
         lead.EnterAccountNameInCreateAccount("randomdata",6);
-        lead.EnteringPhone("8455089863");
+        lead.EnteringPhone();
         lead.EnteringEmail("mail",6);
+        lead.EnteringAddress();
+        lead.ClickOnSubmitButtonInCreateAccount();
     }
 }
