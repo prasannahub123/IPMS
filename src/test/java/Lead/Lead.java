@@ -1,4 +1,4 @@
-package Login;
+package Lead;
 
 import BaseClass.BaseClass;
 import PageClass.LeadPage;

@@ -1,4 +1,4 @@
-package Login;
+package Projects;
 
 import BaseClass.BaseClass;
 import PageClass.LeadPage;
@@ -9,20 +9,20 @@ import org.testng.annotations.Test;
 
 public class Projects extends BaseClass {
     private LogInPage logInPage;
-    private ProjectsPage Projects ;
+    private ProjectsPage project ;
 
     @BeforeClass
     public void SetUpTests() {
         super.Setup();
         logInPage = new LogInPage(driver);
-        Projects = new ProjectsPage(driver);
+        project = new ProjectsPage(driver);
     }
     //    @AfterClass
     public void Closer() {
         driver.quit();
     }
     @Test
-    public void LeadGeneration() throws InterruptedException{
+    public void ProjectCreation() {
 
 
 
