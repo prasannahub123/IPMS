@@ -14,13 +14,13 @@ public class Login extends BaseClass {
     @BeforeClass  //browser invocation
     public void SetUpTests() {
         super.Setup();
-        logInPage = new LogInPage(driver);
+        logInPage = new LogInPage(getDriver());
     }
 
 
     @AfterClass
     public void Closer() {
-        driver.quit();
+        getDriver().quit();
     }
 
     @Test

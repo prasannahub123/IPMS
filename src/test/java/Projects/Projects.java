@@ -4,6 +4,7 @@ import BaseClass.BaseClass;
 import PageClass.LeadPage;
 import PageClass.LogInPage;
 import PageClass.ProjectsPage;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -14,12 +15,12 @@ public class Projects extends BaseClass {
     @BeforeClass
     public void SetUpTests() {
         super.Setup();
-        logInPage = new LogInPage(driver);
-        project = new ProjectsPage(driver);
+        logInPage = new LogInPage(getDriver());
+        project = new ProjectsPage(getDriver());
     }
-    //    @AfterClass
+        @AfterClass
     public void Closer() {
-        driver.quit();
+        getDriver().quit();
     }
     @Test
     public void ProjectCreation() {

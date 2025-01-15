@@ -16,14 +16,14 @@ public class Lead extends BaseClass {
     @BeforeClass
     public void SetUpTests() {
         super.Setup();
-        logInPage = new LogInPage(driver);
-        lead = new LeadPage(driver);
+        logInPage = new LogInPage(getDriver());
+        lead = new LeadPage(getDriver());
 
     }
 
-    //    @AfterClass
+        @AfterClass
     public void Closer() {
-        driver.quit();
+        getDriver().quit();
     }
 
     @Test

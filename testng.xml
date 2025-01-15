@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Asus/Documents/IPMS/IPMS" thread-count="2" parallel="classes">
+        <classes>
+            <class name="Login.Login">
+                <methods>
+                    <include name="LogIn"/>
+                </methods>
+            </class>
+            <class name="Lead.Lead">
+                <methods>
+                    <include name="LeadGeneration"/>
+                </methods>
+            </class>
+
+        </classes>
+    </test>
+</suite>
