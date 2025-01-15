@@ -1,4 +1,4 @@
-name: Run Automation Tests
+name: Trigger Automation
 
 # Trigger on manually dispatching the workflow
 on:
@@ -7,22 +7,19 @@ on:
       input-string:
         description: 'Enter URL'
         required: true
-        default: 'http://203.193.144.20:8005/dashboard/'  # Default URL for testing
+        default: 'http://203.193.144.20:8005/dashboard/'
 
 jobs:
   ui-automation:
     runs-on: ubuntu-latest
 
     services:
-      # Running a Selenium container with Chrome (Xvfb will be handled inside the container)
       xvfb:
         image: docker.io/selenium/standalone-chrome:latest
         options: >-
           --shm-size 2g
           --name xvfb
           --label testing
-        ports:
-          - 4444:4444  # Expose the Selenium grid port
 
     steps:
       # Checkout the repository code
@@ -34,7 +31,16 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '21'
-          distribution: 'adoptium'  # Use the Adoptium distribution for JDK
+
+      - name: Install Maven
+        run: sudo apt-get install -y maven
+
+
+      - name: Install Allure
+        run: |
+          curl -o allure-2.13.8.tgz -OLs https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/allure-commandline-2.13.8.tgz
+          sudo tar -zxvf allure-2.13.8.tgz -C /opt/
+          sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
 
       # Cache Maven dependencies to speed up the process
       - name: Cache Maven dependencies
@@ -52,4 +58,4 @@ jobs:
       # Run the automation tests (TestNG)
       - name: Run TestNG tests
         run: |
-          mvn test -Durl=${{ github.event.inputs.input-string }}  # Pass the input URL to Maven
+          mvn test -Durl=${{ github.event.inputs.input-string }} 
