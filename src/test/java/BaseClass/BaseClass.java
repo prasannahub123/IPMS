@@ -12,6 +12,11 @@ public class BaseClass {
     }
 
     public void Setup() {
+
+        if (System.getProperty("Url") != null)
+            Url = System.getProperty("Url");
+
+
         ChromeOptions options = new ChromeOptions();
         driver.set(new ChromeDriver(options));
         options.addArguments("--headless");
@@ -19,4 +24,7 @@ public class BaseClass {
         getDriver().manage().window().maximize();
         getDriver().get(Url);
     }
+
+
+
 }

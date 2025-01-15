@@ -1,37 +1,40 @@
 name: Run Automation Tests
 
-# Trigger on push to the repository or pull request
+# Trigger on manually dispatching the workflow
 on:
   workflow_dispatch:
     inputs:
       input-string:
         description: 'Enter URL'
         required: true
-        default: 'http://203.193.144.20:8005/dashboard/'
+        default: 'http://203.193.144.20:8005/dashboard/'  # Default URL for testing
 
 jobs:
   ui-automation:
     runs-on: ubuntu-latest
 
     services:
+      # Running a Selenium container with Chrome (Xvfb will be handled inside the container)
       xvfb:
         image: docker.io/selenium/standalone-chrome:latest
         options: >-
           --shm-size 2g
           --name xvfb
           --label testing
+        ports:
+          - 4444:4444  # Expose the Selenium grid port
 
     steps:
       # Checkout the repository code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up JDK (Java Development Kit) for running the tests
+      # Set up JDK 21 (using Adoptium distribution)
       - name: Set up JDK 21
         uses: actions/setup-java@v2
         with:
           java-version: '21'
-          distribution: 'adoptopenjdk'  # Use the AdoptOpenJDK distribution
+          distribution: 'adoptium'  # Use the Adoptium distribution for JDK
 
       # Cache Maven dependencies to speed up the process
       - name: Cache Maven dependencies
@@ -42,10 +45,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      # Install dependencies (assuming you're using Maven)
+      # Install dependencies (skip tests during this step)
       - name: Install dependencies
         run: mvn install -DskipTests=true
 
       # Run the automation tests (TestNG)
       - name: Run TestNG tests
-        run: mvn test
+        run: |
+          mvn test -Durl=${{ github.event.inputs.input-string }}  # Pass the input URL to Maven
