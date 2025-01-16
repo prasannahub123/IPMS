@@ -61,8 +61,12 @@ jobs:
       - name: Run TestNG tests
         run: mvn test -Durl=${{ github.event.inputs.input-string }}
 
-      # Upload Allure reports
       - name: Generate Allure Report
-        run: |
-          allure generate --clean
-          allure open
+        run: allure generate --clean -o allure-report
+
+      - name: Upload Allure Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: allure-report
+          path: allure-report
+
