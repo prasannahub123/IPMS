@@ -44,19 +44,6 @@ jobs:
           sudo tar -zxvf allure.tgz -C /opt/
           sudo ln -s /opt/allure-2.13.8/bin/allure /usr/bin/allure
 
-      # Cache Maven dependencies
-      - name: Cache Maven dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      # Install dependencies (skip tests)
-      - name: Install dependencies
-        run: mvn install -DskipTests=true
-
       # Run TestNG tests
       - name: Run TestNG tests
         run: mvn test -Durl=${{ github.event.inputs.input-string }}
