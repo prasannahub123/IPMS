@@ -16,11 +16,12 @@ public class BaseClass {
         if (System.getProperty("Url") != null)
             Url = System.getProperty("Url");
 
-
         ChromeOptions options = new ChromeOptions();
-        driver.set(new ChromeDriver(options));
         options.addArguments("--headless");
-
+        options.addArguments("--window-size=1280,720");
+        options.addArguments("--ignore-certificate-errors");
+        options.addArguments("--ignore-ssl-errors");
+        driver.set(new ChromeDriver(options));
         getDriver().manage().window().maximize();
         getDriver().get(Url);
     }
