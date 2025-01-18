@@ -609,9 +609,18 @@ public class LeadPage {
         }
     }
 
+    final By SuccessMessage = By.xpath("//div[contains(@role,'status') and contains(text(),'Successfully!')]");
 
-
-
+    @Step("Verify  Success Message")
+    public boolean VerifySuccessMessage() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(SuccessMessage));
+            return driver.findElement(SuccessMessage).isDisplayed();
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
 
 
 

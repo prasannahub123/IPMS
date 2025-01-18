@@ -17,7 +17,7 @@ public class BaseClass {
             Url = System.getProperty("Url");
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--headless");
+//        options.addArguments("--headless");
         options.addArguments("--window-size=1280,720");
         options.addArguments("--ignore-certificate-errors");
         options.addArguments("--ignore-ssl-errors");
@@ -25,7 +25,5 @@ public class BaseClass {
         getDriver().manage().window().maximize();
         getDriver().get(Url);
     }
-
-
 
 }

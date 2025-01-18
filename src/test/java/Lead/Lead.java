@@ -3,9 +3,12 @@ package Lead;
 import BaseClass.BaseClass;
 import PageClass.LeadPage;
 import PageClass.LogInPage;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
 
 public class Lead extends BaseClass {
 
@@ -28,6 +31,8 @@ public class Lead extends BaseClass {
 
     @Test
     public void LeadGeneration() throws InterruptedException {
+        SoftAssert softAssert = new SoftAssert();
+
         //Browser Open & Login
         logInPage.EnterUserName("snackcoder@gmail.com");
         logInPage.EnterPassword("SuperAdmin");
@@ -75,6 +80,9 @@ public class Lead extends BaseClass {
         lead.EnteringLeadSourceName("randomdata",5);
         lead.EnteringDescription();
         lead.ClickOnSubmitButtonLeadSource();
+        if(lead.VerifySuccessMessage()){
+            softAssert.fail("Lead Source creation failed");
+        }
         //Clicking on Plus Icon For Adding Account Name(Creating Customer)
         lead.ClickOnAddAccountNameButton();
         lead.EnteringCustomerName("randomdata",6);
@@ -90,5 +98,6 @@ public class Lead extends BaseClass {
         lead.EnteringEmail("mail",6);
         lead.EnteringAddress();
         lead.ClickOnSubmitButtonInCreateAccount();
+        softAssert.assertAll();
     }
 }

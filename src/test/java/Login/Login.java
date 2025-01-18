@@ -1,7 +1,6 @@
 package Login;
 
 import BaseClass.BaseClass;
-import PageClass.LeadPage;
 import PageClass.LogInPage;
 
 import org.testng.annotations.AfterClass;
