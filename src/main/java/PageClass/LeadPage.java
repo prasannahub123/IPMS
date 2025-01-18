@@ -39,7 +39,7 @@ public class LeadPage {
     final String LeadOwnerOptions = ("(//div[contains(@class,'menu')]/descendant::div[contains(@class,'option')])[%d]");
     final By LeadOwnerDropdown = By.xpath("//label[contains(text(),'Lead Owner')]/parent::div/following-sibling::div");
     final By AccountName = By.xpath("//select[@name='account_name']");
-    final String AccountNameOptions = ("(//select[@name='account_name']//option)[%d]");
+    final By AccountNameOption = By.xpath("//select[@name='account_name']//option[contains(text(),'Prasanna')]");
     final By Contact = By.xpath("//select[@id='contact_agent']");
     final String ContactOptions = ("(//select[@id='contact_agent']//option)[%d]");
     final By StageFor = By.xpath("//select[@id='stage_for']");
@@ -191,13 +191,11 @@ public class LeadPage {
     }
 
     @Step("Selecting desired Account Name")
-    public void SelectingAccountName(int OptionNo) throws InterruptedException {
+    public void SelectingAccountName(String DesiredAccount) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOfElementLocated(AccountName));
         driver.findElement(AccountName).click();
         Thread.sleep(500);
-        String formattedXPath = String.format(AccountNameOptions, OptionNo);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(formattedXPath)));
-        driver.findElement(By.xpath(formattedXPath)).click();
+        driver.findElement(AccountNameOption).click();
         driver.findElement(AccountName).click();
     }
 
@@ -512,17 +510,16 @@ public class LeadPage {
     }
 
 
-        public static String generatePhoneNumber() {
+
+        public String generatePhoneNumber() {
             Random rand = new Random();
-            // Generate a 10-digit number
-            long phoneNumber = rand.nextLong(10000000000L); // 10 digits
+            // Generate a random 10-digit number
+            long phoneNumber = Math.abs(rand.nextLong() % 1_000_000_0000L);
 
-            // Ensure it's positive and 10 digits long
-            phoneNumber = Math.abs(phoneNumber) % 10000000000L;
-
-            // Return the phone number as a string
+            // Return the phone number as a string with leading zeros if necessary
             return String.format("%010d", phoneNumber);
         }
+
 
     public static class RandomAddressGenerator {
         private static final String[] STREET_NAMES = {

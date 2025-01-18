@@ -52,7 +52,7 @@ public class Lead extends BaseClass {
         lead.SelectingLeadOwner(1);
         lead.SelectingLeadSource(7);
         Thread.sleep(1000);
-        lead.SelectingAccountName(11);
+        lead.SelectingAccountName("Prasanna");  //need to add to xpath
         lead.SelectingContact(2);
         lead.SelectingStageFor(2);
         lead.SelectingLeadStage(2);
@@ -71,6 +71,7 @@ public class Lead extends BaseClass {
         lead.TempCloseButton();
         //Clicking on Plus Icon For Adding Lead Source
         lead.ClickOnAddLeadSourceButton();
+        Thread.sleep(1500);
         lead.EnteringLeadSourceName("randomdata",5);
         lead.EnteringDescription();
         lead.ClickOnSubmitButtonLeadSource();
